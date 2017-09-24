@@ -1,0 +1,18 @@
+# Template format reference http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-formats.html
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: phenyl test # Any text
+Resources:
+  HelloWorld: # Any resources name
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler # {name of file that lambda function defines without extension}.handler
+      # Language at runtime (In phenyl, usually latest version of node)
+      # http://docs.aws.amazon.com/lambda/latest/dg/current-supported-versions.html
+      Runtime: nodejs6.10
+      Events:
+        Any: # Any events name
+          Type: Api
+          Properties:
+            Path: /api/{proxy+} # Any path name ("{proxy+}" allows all pass name)
+            Method: any # Any method name ("any" allows all method name)
